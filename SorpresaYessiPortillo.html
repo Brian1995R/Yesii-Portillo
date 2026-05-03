@@ -13,20 +13,18 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             overflow: hidden; background: #fce4ec; position: relative;
         }
+        /* FONTO DE ROSAS LIMPIO */
         .bg-gif-fijo {
             position: fixed; inset: 0; z-index: -1;
-            background-image: url('https://i.pinimg.com/736x/09/23/3d/09233d646e3f9bd48c39d535f1a8e29a.jpg');
-            background-size: cover; background-position: center; filter: brightness(0.9);
+            background-image: url('https://i.pinimg.com/originals/0d/19/22/0d19220023473138b323c12e20b34918.jpg');
+            background-size: cover; background-position: center; filter: brightness(0.8);
         }
         
         .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            z-index: 100;
+            display: flex; flex-direction: column; align-items: center; gap: 25px; z-index: 100;
         }
 
+        /* Sobre */
         .envelope {
             --width: 280px; --height: 170px;
             position: relative; width: var(--width); height: var(--height);
@@ -49,7 +47,6 @@
             border: 2px solid #f06292;
         }
         
-        /* CORRECCIÓN DE LA FOTO (SELLO) */
         .envelope-front img.stamp {
             position: absolute; top: 10px; right: 10px; width: 60px; height: 70px;
             border: 2px dashed #ad1457; border-radius: 4px; object-fit: cover;
@@ -90,14 +87,14 @@
         }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal-content {
-            background: white; background-image: url("https://i.pinimg.com/736x/10/3e/c7/103ec7b89932ce814fb49e6da142a3f5.jpg");
-            background-size: cover; width: min(500px, 90vw); max-height: 85vh;
+            background: white; background-color: #fff;
+            width: min(500px, 90vw); max-height: 85vh;
             border-radius: 20px; position: relative; padding: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
         }
         .modal-body {
             padding: 20px; overflow-y: auto; max-height: 75vh; text-align: center;
-            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.92);
+            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
         }
         .modal-close {
             position: absolute; top: 10px; right: 10px; background: #f48fb1;
@@ -123,7 +120,6 @@
         <div class="envelope" id="envelope">
             <div class="envelope-inner">
                 <div class="envelope-front">
-                    <!-- FOTO DEL SELLO CORREGIDA -->
                     <img src="https://i.pinimg.com/736x/43/e5/85/43e585a354431af7aa8fc38c6cba120f.jpg" class="stamp">
                     <div style="color: #4a0b74; font-weight: bold; text-align: center; padding: 0 10px;">
                         <p style="margin: 5px 0;">Para: Yessi Portillo ❤️</p>
@@ -179,7 +175,7 @@
         const env = document.getElementById('envelope');
         
         function reproducir() {
-            audio.play().catch(e => console.log("Esperando clic"));
+            audio.play().catch(e => console.log("Clic requerido"));
         }
 
         function abrirModal(id) {
