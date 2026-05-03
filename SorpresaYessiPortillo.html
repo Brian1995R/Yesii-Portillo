@@ -14,11 +14,11 @@
             overflow: hidden; background: #fce4ec; position: relative;
         }
         
-        /* FONDO DE ROSAS ORIGINAL */
+        /* FONDO ACTUALIZADO DESDE EL SEGUNDO CÓDIGO */
         .bg-gif-fijo {
             position: fixed; inset: 0; z-index: -1;
-            background-image: url('https://i.pinimg.com/originals/24/74/46/2474464f16960d704537754f3074092b.gif');
-            background-size: cover; background-position: center; filter: brightness(0.8);
+            background-image: url('https://i.pinimg.com/736x/09/23/3d/09233d646e3f9bd48c39d535f1a8e29a.jpg');
+            background-size: cover; background-position: center; filter: brightness(0.9);
         }
         
         .main-container {
@@ -85,17 +85,22 @@
             opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
         }
         .modal.active { opacity: 1; pointer-events: auto; }
+        
         .modal-content {
-            background: white; width: min(500px, 90vw); max-height: 85vh;
+            background: white; 
+            /* Se incluye el fondo decorativo del segundo código en el interior */
+            background-image: url("https://i.pinimg.com/736x/10/3e/c7/103ec7b89932ce814fb49e6da142a3f5.jpg");
+            background-size: cover;
+            width: min(500px, 90vw); max-height: 85vh;
             border-radius: 20px; position: relative; padding: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
         }
+        
         .modal-body {
-            padding: 10px; overflow-y: auto; max-height: 75vh; text-align: center;
-            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
+            padding: 20px; overflow-y: auto; max-height: 75vh; text-align: center;
+            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.92);
         }
         
-        /* ESTILO PARA LA FOTO DENTRO DE LA CARTA */
         .foto-carta {
             width: 100%; max-height: 350px; object-fit: cover;
             border-radius: 10px; border: 4px solid #f8bbd0;
