@@ -13,10 +13,11 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             overflow: hidden; background: #fce4ec; position: relative;
         }
-        /* FONTO DE ROSAS LIMPIO */
+        
+        /* FONDO DE ROSAS ORIGINAL */
         .bg-gif-fijo {
             position: fixed; inset: 0; z-index: -1;
-            background-image: url('https://i.pinimg.com/originals/0d/19/22/0d19220023473138b323c12e20b34918.jpg');
+            background-image: url('https://i.pinimg.com/originals/24/74/46/2474464f16960d704537754f3074092b.gif');
             background-size: cover; background-position: center; filter: brightness(0.8);
         }
         
@@ -24,7 +25,6 @@
             display: flex; flex-direction: column; align-items: center; gap: 25px; z-index: 100;
         }
 
-        /* Sobre */
         .envelope {
             --width: 280px; --height: 170px;
             position: relative; width: var(--width); height: var(--height);
@@ -77,7 +77,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s;
             font-family: "Quicksand", sans-serif; font-size: 1rem;
         }
-        .btn-instrucciones:hover { transform: translateY(-3px); background: #f06292; }
 
         .modal {
             position: fixed; inset: 0; z-index: 2000;
@@ -87,15 +86,22 @@
         }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal-content {
-            background: white; background-color: #fff;
-            width: min(500px, 90vw); max-height: 85vh;
+            background: white; width: min(500px, 90vw); max-height: 85vh;
             border-radius: 20px; position: relative; padding: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
         }
         .modal-body {
-            padding: 20px; overflow-y: auto; max-height: 75vh; text-align: center;
+            padding: 10px; overflow-y: auto; max-height: 75vh; text-align: center;
             border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
         }
+        
+        /* ESTILO PARA LA FOTO DENTRO DE LA CARTA */
+        .foto-carta {
+            width: 100%; max-height: 350px; object-fit: cover;
+            border-radius: 10px; border: 4px solid #f8bbd0;
+            margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         .modal-close {
             position: absolute; top: 10px; right: 10px; background: #f48fb1;
             border: none; color: white; width: 30px; height: 30px; border-radius: 50%;
@@ -138,6 +144,8 @@
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('modalCarta')">&times;</button>
             <div class="modal-body">
+                <img src="foto_yessi_hijas.jpg" alt="Yessi y sus hijas" class="foto-carta">
+                
                 <div class="badge">Para una mujer excepcional</div>
                 <div class="texto">
                     Yessi,<br><br>
@@ -175,7 +183,7 @@
         const env = document.getElementById('envelope');
         
         function reproducir() {
-            audio.play().catch(e => console.log("Clic requerido"));
+            audio.play().catch(e => console.log("Esperando clic"));
         }
 
         function abrirModal(id) {
