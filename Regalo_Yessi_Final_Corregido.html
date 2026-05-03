@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Para Yessi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        *, ::before, ::after { box-sizing: border-box; }
+        body {
+            font-family: "Quicksand", sans-serif;
+            margin: 0; height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            overflow: hidden; background: #fce4ec; position: relative;
+        }
+        .bg-gif-fijo {
+            position: fixed; inset: 0; z-index: -1;
+            background-image: url('https://i.pinimg.com/736x/09/23/3d/09233d646e3f9bd48c39d535f1a8e29a.jpg');
+            background-size: cover; background-position: center; filter: brightness(0.9);
+        }
+        
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            z-index: 100;
+        }
+
+        .envelope {
+            --width: 280px; --height: 170px;
+            position: relative; width: var(--width); height: var(--height);
+            perspective: 1000px; cursor: pointer;
+        }
+        @media (min-width: 720px) { .envelope { --width: 450px; --height: 270px; } }
+        
+        .envelope-inner {
+            position: relative; width: 100%; height: 100%;
+            transition: transform 0.8s ease-in-out; transform-style: preserve-3d;
+        }
+        .envelope.open .envelope-inner { transform: rotateY(180deg); }
+        
+        .envelope-front, .envelope-back {
+            position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .envelope-front {
+            background: #f8bbd0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border: 2px solid #f06292;
+        }
+        
+        /* CORRECCIÓN DE LA FOTO (SELLO) */
+        .envelope-front img.stamp {
+            position: absolute; top: 10px; right: 10px; width: 60px; height: 70px;
+            border: 2px dashed #ad1457; border-radius: 4px; object-fit: cover;
+            background: white;
+        }
+
+        .click-text {
+            color: #ad1457; font-weight: bold; margin-top: 10px; font-size: 0.9rem;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+
+        .envelope-back { background: #f48fb1; transform: rotateY(180deg); }
+        .envelope-back::after {
+            content: ""; position: absolute; inset: 0;
+            background: conic-gradient(transparent 60deg, #f06292 60deg 120deg, #fce4ec 120deg 240deg, #f06292 240deg 300deg, transparent 300deg);
+        }
+        .top-fold {
+            position: absolute; inset: 0; background: #f48fb1;
+            clip-path: polygon(0% 0%, 50% 55%, 100% 0%);
+            z-index: 10; transform-origin: top; transition: transform 0.4s ease 0.4s;
+        }
+        .envelope.open .top-fold { transform: rotateX(180deg); z-index: 0; }
+
+        .btn-instrucciones {
+            background: #ad1457; color: white; border: none; padding: 12px 30px;
+            border-radius: 30px; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s;
+            font-family: "Quicksand", sans-serif; font-size: 1rem;
+        }
+        .btn-instrucciones:hover { transform: translateY(-3px); background: #f06292; }
+
+        .modal {
+            position: fixed; inset: 0; z-index: 2000;
+            display: flex; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+        }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: white; background-image: url("https://i.pinimg.com/736x/10/3e/c7/103ec7b89932ce814fb49e6da142a3f5.jpg");
+            background-size: cover; width: min(500px, 90vw); max-height: 85vh;
+            border-radius: 20px; position: relative; padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .modal-body {
+            padding: 20px; overflow-y: auto; max-height: 75vh; text-align: center;
+            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.92);
+        }
+        .modal-close {
+            position: absolute; top: 10px; right: 10px; background: #f48fb1;
+            border: none; color: white; width: 30px; height: 30px; border-radius: 50%;
+            cursor: pointer; z-index: 100;
+        }
+        .badge {
+            background: #ad1457; color: white; padding: 8px 15px; border-radius: 20px;
+            display: inline-block; font-family: 'Dancing Script', cursive; font-size: 1.4rem; margin-bottom: 15px;
+        }
+        .texto { font-size: 1.1rem; line-height: 1.6; color: #4a0b74; font-weight: 600; }
+        .resaltado { color: #ad1457; font-weight: 800; }
+    </style>
+</head>
+<body>
+    <div class="bg-gif-fijo"></div>
+    
+    <audio id="audioCarta" loop preload="auto">
+        <source src="https://github.com/Brian1995R/musica/raw/refs/heads/main/Carla%20Morrison%20-%20Disfruto%20(letra).mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-container">
+        <div class="envelope" id="envelope">
+            <div class="envelope-inner">
+                <div class="envelope-front">
+                    <!-- FOTO DEL SELLO CORREGIDA -->
+                    <img src="https://i.pinimg.com/736x/43/e5/85/43e585a354431af7aa8fc38c6cba120f.jpg" class="stamp">
+                    <div style="color: #4a0b74; font-weight: bold; text-align: center; padding: 0 10px;">
+                        <p style="margin: 5px 0;">Para: Yessi Portillo ❤️</p>
+                        <p class="click-text">✨ Toca para abrir ✨</p>
+                    </div>
+                </div>
+                <div class="envelope-back">
+                    <div class="top-fold"></div>
+                </div>
+            </div>
+        </div>
+        <button class="btn-instrucciones" onclick="activarInstrucciones()">📜 Ver Instrucciones</button>
+    </div>
+
+    <div class="modal" id="modalCarta">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal('modalCarta')">&times;</button>
+            <div class="modal-body">
+                <div class="badge">Para una mujer excepcional</div>
+                <div class="texto">
+                    Yessi,<br><br>
+                    Hoy no es un día cualquiera, y no quería dejarlo pasar sin decirle lo que mi silencio a veces calla, pero mi corazón siempre sabe: <span class="resaltado">usted es una mujer extraordinaria.</span><br><br>
+                    Me detengo a pensar en todo lo que hace, en la paciencia, la ternura y la fuerza con la que guía la vida de <strong>Camila y Sarita</strong>, y me inunda una profunda admiración. Ser madre es un arte que usted domina con el alma.<br><br>
+                    A veces me invade la nostalgia al recordar los momentos compartidos, y en cada uno de esos recuerdos siempre está usted: valiente, entregada y con esa luz que solo usted tiene.<br><br>
+                    <span class="resaltado">Usted es el pilar de su hogar y el ejemplo más puro de amor.</span><br><br>
+                    Quiero que hoy se sienta celebrada, por sus hijas y por quien todavía guarda por usted un amor inmenso y un respeto que no conoce límites.<br><br>
+                    <strong>Con toda mi admiración,</strong><br>
+                    <span class="resaltado">Brian Beteta (Mi amor lindo)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalInstrucciones">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal('modalInstrucciones')">&times;</button>
+            <div class="modal-body">
+                <div class="badge">Una sorpresa más...</div>
+                <div class="texto">
+                    Querida Yessi,<br><br>
+                    Si busca con cuidado entre el aroma de las rosas que le envío, encontrará un pequeño tesoro: <span class="resaltado">un vale de reservación especial.</span><br><br>
+                    He preparado todo en el restaurante <strong>"Las Delicias"</strong> (Plaza San Ángel, frente al parque central de Jalapa, Local No. 10).<br><br>
+                    La cita es este <span class="resaltado">Lunes 11 de Mayo a las 5:00 PM.</span><br><br>
+                    Tendrá una mesa reservada exclusivamente para que puedan consentirla y disfrute de algo delicioso. Se merece este momento de paz y alegría.<br><br>
+                    ¡Disfrútelo mucho!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audioCarta');
+        const env = document.getElementById('envelope');
+        
+        function reproducir() {
+            audio.play().catch(e => console.log("Esperando clic"));
+        }
+
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('active');
+            if(id === 'modalCarta') env.classList.remove('open');
+        }
+
+        function activarInstrucciones() {
+            reproducir();
+            abrirModal('modalInstrucciones');
+        }
+
+        env.addEventListener('click', function() {
+            this.classList.add('open');
+            reproducir();
+            setTimeout(() => abrirModal('modalCarta'), 1200);
+        });
+    </script>
+</body>
+</html>
