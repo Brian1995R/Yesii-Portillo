@@ -11,14 +11,17 @@
             font-family: "Quicksand", sans-serif;
             margin: 0; height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            overflow: hidden; background: #fce4ec; position: relative;
+            overflow: hidden; 
+            /* FONDO DE SEGURIDAD SI EL GIF FALLA */
+            background-color: #900c3f; 
+            position: relative;
         }
         
-        /* FONDO RESTAURADO (El que tenía las letras de admiración) */
+        /* FONDO DE ROSAS ROJAS */
         .bg-gif-fijo {
             position: fixed; inset: 0; z-index: -1;
-            background-image: url('https://c.tenor.com/C6XN3mYm07UAAAAC/flores-flowers.gif');
-            background-size: cover; background-position: center; filter: brightness(0.7);
+            background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3N6Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4Znd4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lS077x1vN6L9O8/giphy.gif');
+            background-size: cover; background-position: center; filter: brightness(0.6);
         }
         
         .main-container {
@@ -41,11 +44,11 @@
         
         .envelope-front, .envelope-back {
             position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         .envelope-front {
             background: #f8bbd0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 2px solid #f06292;
+            border: 3px solid #ad1457;
         }
         
         .envelope-front img.stamp {
@@ -55,15 +58,15 @@
         }
 
         .click-text {
-            color: #ad1457; font-weight: bold; margin-top: 10px; font-size: 0.9rem;
-            animation: pulse 1.5s infinite;
+            color: #ad1457; font-weight: bold; margin-top: 10px; font-size: 1rem;
+            animation: pulse 1.5s infinite; text-shadow: 0 0 5px white;
         }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         .envelope-back { background: #f48fb1; transform: rotateY(180deg); }
         .envelope-back::after {
             content: ""; position: absolute; inset: 0;
-            background: conic-gradient(transparent 60deg, #f06292 60deg 120deg, #fce4ec 120deg 240deg, #f06292 240deg 300deg, transparent 300deg);
+            background: conic-gradient(transparent 60deg, #ad1457 60deg 120deg, #fce4ec 120deg 240deg, #ad1457 240deg 300deg, transparent 300deg);
         }
         .top-fold {
             position: absolute; inset: 0; background: #f48fb1;
@@ -73,54 +76,53 @@
         .envelope.open .top-fold { transform: rotateX(180deg); z-index: 0; }
 
         .btn-instrucciones {
-            background: #ad1457; color: white; border: none; padding: 12px 30px;
+            background: #ffc107; color: #000; border: none; padding: 12px 30px;
             border-radius: 30px; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: all 0.3s;
             font-family: "Quicksand", sans-serif; font-size: 1rem;
         }
-        .btn-instrucciones:hover { transform: translateY(-3px); background: #f06292; }
 
         .modal {
             position: fixed; inset: 0; z-index: 2000;
             display: flex; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
             opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
         }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal-content {
-            background: white; background-color: #fff;
-            width: min(500px, 90vw); max-height: 85vh;
-            border-radius: 20px; position: relative; padding: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
+            background: white; width: min(500px, 92vw); max-height: 85vh;
+            border-radius: 20px; position: relative; padding: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;
         }
         .modal-body {
             padding: 10px; overflow-y: auto; max-height: 75vh; text-align: center;
-            border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
+            border: 4px double #ad1457; border-radius: 15px;
         }
         
         .foto-carta {
-            width: 100%; max-height: 350px; object-fit: cover;
-            border-radius: 10px; border: 4px solid #f8bbd0;
-            margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 100%; max-height: 300px; object-fit: cover;
+            border-radius: 10px; border: 3px solid #f8bbd0;
+            margin-bottom: 15px;
         }
 
         .modal-close {
-            position: absolute; top: 10px; right: 10px; background: #f48fb1;
-            border: none; color: white; width: 30px; height: 30px; border-radius: 50%;
-            cursor: pointer; z-index: 100;
+            position: absolute; top: 10px; right: 10px; background: #ad1457;
+            border: none; color: white; width: 35px; height: 35px; border-radius: 50%;
+            cursor: pointer; z-index: 100; font-weight: bold;
         }
         .badge {
             background: #ad1457; color: white; padding: 8px 15px; border-radius: 20px;
-            display: inline-block; font-family: 'Dancing Script', cursive; font-size: 1.4rem; margin-bottom: 15px;
+            display: inline-block; font-family: 'Dancing Script', cursive; font-size: 1.5rem; margin-bottom: 15px;
         }
-        .texto { font-size: 1.1rem; line-height: 1.6; color: #4a0b74; font-weight: 600; }
-        .resaltado { color: #ad1457; font-weight: 800; }
+        .texto { font-size: 1.1rem; line-height: 1.6; color: #333; font-weight: 600; }
+        .resaltado { color: #ad1457; font-weight: 800; font-size: 1.2rem; }
     </style>
 </head>
 <body>
+
     <div class="bg-gif-fijo"></div>
     
-    <audio id="audioCarta" loop preload="auto">
+    <audio id="audioCarta" loop>
         <source src="https://github.com/Brian1995R/musica/raw/refs/heads/main/Carla%20Morrison%20-%20Disfruto%20(letra).mp3" type="audio/mpeg">
     </audio>
 
@@ -129,9 +131,9 @@
             <div class="envelope-inner">
                 <div class="envelope-front">
                     <img src="https://i.pinimg.com/736x/43/e5/85/43e585a354431af7aa8fc38c6cba120f.jpg" class="stamp">
-                    <div style="color: #4a0b74; font-weight: bold; text-align: center; padding: 0 10px;">
-                        <p style="margin: 5px 0;">Para: Yessi Portillo ❤️</p>
-                        <p class="click-text">✨ Toca para abrir ✨</p>
+                    <div style="color: #ad1457; font-weight: bold; text-align: center;">
+                        <p style="margin: 5px 0; font-size: 1.2rem;">Para: Yessi Portillo ❤️</p>
+                        <p class="click-text">🌹 Toca para abrir 🌹</p>
                     </div>
                 </div>
                 <div class="envelope-back">
@@ -144,19 +146,15 @@
 
     <div class="modal" id="modalCarta">
         <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModal('modalCarta')">&times;</button>
+            <button class="modal-close" onclick="cerrarModal('modalCarta')">X</button>
             <div class="modal-body">
                 <img src="image_6a5a61.jpg" alt="Yessi y sus hijas" class="foto-carta">
-                
-                <div class="badge">Para una mujer excepcional</div>
+                <div class="badge">Con toda mi admiración</div>
                 <div class="texto">
                     Yessi,<br><br>
-                    Hoy no es un día cualquiera, y no quería dejarlo pasar sin decirle lo que mi silencio a veces calla, pero mi corazón siempre sabe: <span class="resaltado">usted es una mujer extraordinaria.</span><br><br>
-                    Me detengo a pensar en todo lo que hace, en la paciencia, la ternura y la fuerza con la que guía la vida de <strong>Camila y Sarita</strong>, y me inunda una profunda admiración. Ser madre es un arte que usted domina con el alma.<br><br>
-                    A veces me invade la nostalgia al recordar los momentos compartidos, y en cada uno de esos recuerdos siempre está usted: valiente, entregada y con esa luz que solo usted tiene.<br><br>
-                    <span class="resaltado">Usted es el pilar de su hogar y el ejemplo más puro de amor.</span><br><br>
-                    Quiero que hoy se sienta celebrada, por sus hijas y por quien todavía guarda por usted un amor inmenso y un respeto que no conoce límites.<br><br>
-                    <strong>Con toda mi admiración,</strong><br>
+                    Usted es una mujer extraordinaria. La admiro profundamente por la fuerza con la que guía a <span class="resaltado">Camila y Sarita.</span><br><br>
+                    Usted es el pilar de su hogar y el ejemplo más puro de amor.<br><br>
+                    <strong>Con cariño,</strong><br>
                     <span class="resaltado">Brian Beteta (Mi amor lindo)</span>
                 </div>
             </div>
@@ -165,16 +163,13 @@
 
     <div class="modal" id="modalInstrucciones">
         <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModal('modalInstrucciones')">&times;</button>
+            <button class="modal-close" onclick="cerrarModal('modalInstrucciones')">X</button>
             <div class="modal-body">
-                <div class="badge">Una sorpresa más...</div>
+                <div class="badge">Tu Sorpresa</div>
                 <div class="texto">
-                    Querida Yessi,<br><br>
-                    Si busca con cuidado entre el aroma de las rosas que le envío, encontrará un pequeño tesoro: <span class="resaltado">un vale de reservación especial.</span><br><br>
-                    He preparado todo en el restaurante <strong>"Las Delicias"</strong> (Plaza San Ángel, frente al parque central de Jalapa, Local No. 10).<br><br>
+                    He preparado una reservación para usted en el restaurante <br><strong>"Las Delicias"</strong>.<br><br>
                     La cita es este <span class="resaltado">Lunes 11 de Mayo a las 5:00 PM.</span><br><br>
-                    Tendrá una mesa reservada exclusivamente para que puedan consentirla y disfrute de algo delicioso. Se merece este momento de paz y alegría.<br><br>
-                    ¡Disfrútelo mucho!
+                    ¡Disfrútelo mucho, se lo merece!
                 </div>
             </div>
         </div>
@@ -184,23 +179,10 @@
         const audio = document.getElementById('audioCarta');
         const env = document.getElementById('envelope');
         
-        function reproducir() {
-            audio.play().catch(e => console.log("Clic requerido"));
-        }
-
-        function abrirModal(id) {
-            document.getElementById(id).classList.add('active');
-        }
-
-        function cerrarModal(id) {
-            document.getElementById(id).classList.remove('active');
-            if(id === 'modalCarta') env.classList.remove('open');
-        }
-
-        function activarInstrucciones() {
-            reproducir();
-            abrirModal('modalInstrucciones');
-        }
+        function reproducir() { audio.play().catch(e => console.log("Play error")); }
+        function abrirModal(id) { document.getElementById(id).classList.add('active'); }
+        function cerrarModal(id) { document.getElementById(id).classList.remove('active'); if(id === 'modalCarta') env.classList.remove('open'); }
+        function activarInstrucciones() { reproducir(); abrirModal('modalInstrucciones'); }
 
         env.addEventListener('click', function() {
             this.classList.add('open');
