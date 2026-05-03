@@ -86,35 +86,26 @@
         }
         .modal.active { opacity: 1; pointer-events: auto; }
         .modal-content {
-            background: white; width: min(500px, 90vw); max-height: 90vh;
+            background: white; width: min(500px, 90vw); max-height: 85vh;
             border-radius: 20px; position: relative; padding: 15px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
         }
         .modal-body {
-            padding: 15px; overflow-y: auto; max-height: 80vh; text-align: center;
+            padding: 10px; overflow-y: auto; max-height: 75vh; text-align: center;
             border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
         }
         
-        /* ESTILO DE LA FOTO DENTRO DE LA CARTA */
+        /* ESTILO PARA LA FOTO DENTRO DE LA CARTA */
         .foto-carta {
-            width: 100%; 
-            max-width: 400px; /* Tamaño máximo para que no se vea gigante */
-            height: auto;
-            aspect-ratio: 4/3; /* O el aspecto que prefieras */
-            object-fit: cover;
-            border-radius: 12px; 
-            border: 5px solid #fff;
-            margin-bottom: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%; max-height: 350px; object-fit: cover;
+            border-radius: 10px; border: 4px solid #f8bbd0;
+            margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .modal-close {
             position: absolute; top: 10px; right: 10px; background: #f48fb1;
             border: none; color: white; width: 30px; height: 30px; border-radius: 50%;
-            cursor: pointer; z-index: 100; font-weight: bold;
+            cursor: pointer; z-index: 100;
         }
         .badge {
             background: #ad1457; color: white; padding: 8px 15px; border-radius: 20px;
@@ -127,7 +118,7 @@
 <body>
     <div class="bg-gif-fijo"></div>
     
-    <audio id="audioCarta" loop>
+    <audio id="audioCarta" loop preload="auto">
         <source src="https://github.com/Brian1995R/musica/raw/refs/heads/main/Carla%20Morrison%20-%20Disfruto%20(letra).mp3" type="audio/mpeg">
     </audio>
 
@@ -136,7 +127,7 @@
             <div class="envelope-inner">
                 <div class="envelope-front">
                     <img src="https://i.pinimg.com/736x/43/e5/85/43e585a354431af7aa8fc38c6cba120f.jpg" class="stamp">
-                    <div style="color: #4a0b74; font-weight: bold; text-align: center;">
+                    <div style="color: #4a0b74; font-weight: bold; text-align: center; padding: 0 10px;">
                         <p style="margin: 5px 0;">Para: Yessi Portillo ❤️</p>
                         <p class="click-text">✨ Toca para abrir ✨</p>
                     </div>
@@ -155,13 +146,33 @@
             <div class="modal-body">
                 <img src="foto_yessi_hijas.jpg" alt="Yessi y sus hijas" class="foto-carta">
                 
-                <div class="badge">Con toda mi admiración</div>
+                <div class="badge">Para una mujer excepcional</div>
                 <div class="texto">
                     Yessi,<br><br>
-                    Usted es una mujer extraordinaria. La admiro profundamente por la fuerza con la que guía a <span class="resaltado">Camila y Sarita.</span><br><br>
-                    Es el pilar de su hogar y el ejemplo más puro de amor.<br><br>
-                    <strong>Con cariño,</strong><br>
+                    Hoy no es un día cualquiera, y no quería dejarlo pasar sin decirle lo que mi silencio a veces calla, pero mi corazón siempre sabe: <span class="resaltado">usted es una mujer extraordinaria.</span><br><br>
+                    Me detengo a pensar en todo lo que hace, en la paciencia, la ternura y la fuerza con la que guía la vida de <strong>Camila y Sarita</strong>, y me inunda una profunda admiración. Ser madre es un arte que usted domina con el alma.<br><br>
+                    A veces me invade la nostalgia al recordar los momentos compartidos, y en cada uno de esos recuerdos siempre está usted: valiente, entregada y con esa luz que solo usted tiene.<br><br>
+                    <span class="resaltado">Usted es el pilar de su hogar y el ejemplo más puro de amor.</span><br><br>
+                    Quiero que hoy se sienta celebrada, por sus hijas y por quien todavía guarda por usted un amor inmenso y un respeto que no conoce límites.<br><br>
+                    <strong>Con toda mi admiración,</strong><br>
                     <span class="resaltado">Brian Beteta (Mi amor lindo)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalInstrucciones">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal('modalInstrucciones')">&times;</button>
+            <div class="modal-body">
+                <div class="badge">Una sorpresa más...</div>
+                <div class="texto">
+                    Querida Yessi,<br><br>
+                    Si busca con cuidado entre el aroma de las rosas que le envío, encontrará un pequeño tesoro: <span class="resaltado">un vale de reservación especial.</span><br><br>
+                    He preparado todo en el restaurante <strong>"Las Delicias"</strong> (Plaza San Ángel, frente al parque central de Jalapa, Local No. 10).<br><br>
+                    La cita es este <span class="resaltado">Lunes 11 de Mayo a las 5:00 PM.</span><br><br>
+                    Tendrá una mesa reservada exclusivamente para que puedan consentirla y disfrute de algo delicioso. Se merece este momento de paz y alegría.<br><br>
+                    ¡Disfrútelo mucho!
                 </div>
             </div>
         </div>
@@ -171,18 +182,27 @@
         const audio = document.getElementById('audioCarta');
         const env = document.getElementById('envelope');
         
-        function reproducir() { audio.play().catch(e => console.log("Play error")); }
-        function abrirModal(id) { document.getElementById(id).classList.add('active'); }
-        function cerrarModal(id) { 
-            document.getElementById(id).classList.remove('active'); 
-            if(id === 'modalCarta') env.classList.remove('open'); 
+        function reproducir() {
+            audio.play().catch(e => console.log("Esperando clic"));
         }
-        function activarInstrucciones() { reproducir(); abrirModal('modalCarta'); }
+
+        function abrirModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('active');
+            if(id === 'modalCarta') env.classList.remove('open');
+        }
+
+        function activarInstrucciones() {
+            reproducir();
+            abrirModal('modalInstrucciones');
+        }
 
         env.addEventListener('click', function() {
             this.classList.add('open');
             reproducir();
-            // Espera a que termine la animación del sobre para abrir la carta
             setTimeout(() => abrirModal('modalCarta'), 1200);
         });
     </script>
