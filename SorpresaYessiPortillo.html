@@ -13,7 +13,6 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             overflow: hidden; background: #fce4ec; position: relative;
         }
-        /* FONTO DE ROSAS LIMPIO */
         .bg-gif-fijo {
             position: fixed; inset: 0; z-index: -1;
             background-image: url('https://i.pinimg.com/originals/0d/19/22/0d19220023473138b323c12e20b34918.jpg');
@@ -93,9 +92,17 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3); overflow: hidden;
         }
         .modal-body {
-            padding: 20px; overflow-y: auto; max-height: 75vh; text-align: center;
+            padding: 10px; overflow-y: auto; max-height: 75vh; text-align: center;
             border: 4px inset #f8bbd0; border-radius: 15px; background: rgba(255, 255, 255, 0.95);
         }
+        
+        /* ESTILO DE LA FOTO GRANDE DENTRO DE LA CARTA */
+        .foto-carta {
+            width: 100%; max-height: 350px; object-fit: cover;
+            border-radius: 10px; border: 4px solid #f8bbd0;
+            margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         .modal-close {
             position: absolute; top: 10px; right: 10px; background: #f48fb1;
             border: none; color: white; width: 30px; height: 30px; border-radius: 50%;
@@ -138,6 +145,8 @@
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('modalCarta')">&times;</button>
             <div class="modal-body">
+                <img src="foto_yessi_hijas.jpg" alt="Yessi y sus hijas" class="foto-carta">
+                
                 <div class="badge">Para una mujer excepcional</div>
                 <div class="texto">
                     Yessi,<br><br>
